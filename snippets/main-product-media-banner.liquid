@@ -14,7 +14,7 @@
     >
         {% if image %}
             <div class="main-product-image-banner flex">
-                {{ image | image_url: width: 3500 | image_tag: height: 3500, alt: image.alt, loading: set_lazy_loading }}
+                {{ image | image_url: width: 3500 | image_tag: height: 3500, alt: 'Product image banner', loading: set_lazy_loading }}
             </div>
         {% endif %}
 

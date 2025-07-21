@@ -87,8 +87,11 @@
 
                     {% assign seen_names = "||" %}
 
+                    <label for="ProductRelatedVariantsSelector"></label>
+
                     <select 
-                        name="product-related-variants-selector" 
+                        id="ProductRelatedVariantsSelector"
+                        name="Product related variants selector" 
                         data-product-related-variants-selector 
                         data-product-related-variants-info='{{ json_array }}'
                     >

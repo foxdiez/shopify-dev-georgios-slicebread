@@ -2,11 +2,11 @@
 
 <add-to-cart data-product-id="{{ product.first_available_variant.id }}">
         {% if button_style == 'icon' %}
-            <button class="icon-style">
+            <button class="icon-style" title="Add to cart">
                 {% render 'icon-plus' %}
             </button>
         {% else %}
-            <button class="text-style">
+            <button class="text-style" title="Add to cart">
                 <span>
                     {{ 'general.atc.text' | t }}
                 </span>

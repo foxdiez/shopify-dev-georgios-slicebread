@@ -12,9 +12,11 @@ main-product-gallery {
     }
 }
 
-main-product-gallery .is-selected {
+main-product-gallery .swiper-main-product-gallery--pagination .swiper-slide-thumb-active {
     opacity: 1!important;
-    transition: all 300ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    transition-delay: 600ms;
+    transition-property: opacity;
 }
 
 main-product-gallery  .swiper-main-product-gallery {

@@ -34,25 +34,6 @@ class MainProductGallery extends HTMLElement {
 
     this.paginationSlides = this.querySelectorAll('.swiper-main-product-gallery--pagination .swiper-slide');
   }
-
-  connectedCallback() {
-    this.addEventListener('click', () => {
-      this.swiperGallery.on('transitionEnd', () => {
-        this.activeSlideCheck();
-      });
-    });
-  }
-
-  activeSlideCheck() {
-    this.paginationSlides.forEach(paginationSlide => {
-      if (paginationSlide.classList.contains('swiper-slide-thumb-active')) {
-        paginationSlide.classList.add('is-selected');
-      }
-      else {
-        paginationSlide.classList.remove('is-selected');
-      }
-    });
-  }
 }
 
 if (!customElements.get('main-product-gallery')) {
