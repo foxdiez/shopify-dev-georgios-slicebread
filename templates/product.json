@@ -104,7 +104,7 @@
           "type": "accordion",
           "settings": {
             "title": "FAQ",
-            "rich_text": "<ul><li>Does this case provide drop protection?We consider this a skin rather than a case, therefore it does not offer drop protection.</li><li>How do I apply my Leather Skin?Leather skin is fit with a powerful 3M adhesive backing for a quick, durable bond to your phone. Watch our detailed instructional video here for an easy to follow step-by-step installation process.</li></ul>"
+            "rich_text": "<ul><li>Does this case provide drop protection?<br/><br/>We consider this a skin rather than a case, therefore it does not offer drop protection.<br/></li></ul><p></p><ul><li>How do I apply my Leather Skin?<br/><br/>Leather skin is fit with a powerful 3M adhesive backing for a quick, durable bond to your phone. Watch our detailed instructional video here for an easy to follow step-by-step installation process.</li></ul>"
           }
         }
       },
