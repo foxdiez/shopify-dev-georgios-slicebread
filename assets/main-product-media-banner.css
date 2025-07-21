@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+.main-product-media-banner .main-product-image-banner {
+    max-height: 700px;
+} 
+
 @media (min-width: 1000px) {
     .main-product-media-banner.reverse-order .main-product-image-banner {
         order: 2;

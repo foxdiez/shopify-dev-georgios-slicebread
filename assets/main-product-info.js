@@ -16,7 +16,7 @@ class MainProductInfo extends HTMLElement {
         } else {
             setTimeout(() => {
                 this.classList.remove('is-loading');
-            }, 200);
+            }, 1000);
         }
     }
 
@@ -34,7 +34,7 @@ class MainProductInfo extends HTMLElement {
             }
         });
 
-        // this.redirectVariantUrl();
+        this.redirectVariantUrl();
     }
 
     updateSections(productID, productHandle) {

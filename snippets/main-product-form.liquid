@@ -136,10 +136,17 @@
                                                     {% if color_swatch.title == variant_color_swatch.title %}
                                                         is-selected
                                                     {% endif %}
+
+                                                    {% unless related_product_variant_product.available == true %}
+                                                        out-of-stock
+                                                    {% endunless %}
                                                 " 
                                                 title="{{ variant_color_swatch.title }}" 
                                                 data-product-id="{{ related_product_variant_product.first_available_variant.id }}"
                                                 data-product-handle="{{ related_product_variant_product.handle }}"
+                                                {% unless related_product_variant_product.available == true %}
+                                                    disabled
+                                                {% endunless %}
                                             >
                                                 {{ variant_color_swatch.thumbnail | image_url: width: 30 | image_tag: height: 30, alt: variant_color_swatch.title }}
                                             </button>
@@ -150,11 +157,18 @@
                                                     {% if color_swatch.title == variant_color_swatch.title %}
                                                         is-selected
                                                     {% endif %}
+
+                                                    {% unless related_product_variant_product.available == true %}
+                                                        out-of-stock
+                                                    {% endunless %}
                                                 " 
                                                 style="background: {{ variant_color_swatch.color }};" 
                                                 title="{{ variant_color_swatch.title }}"
                                                 data-product-id="{{ related_product_variant_product.first_available_variant.id }}"
                                                 data-product-handle="{{ related_product_variant_product.handle }}"
+                                                {% unless related_product_variant_product.available == true %}
+                                                    disabled
+                                                {% endunless %}
                                             >
                                             </button>
                                         {% endif %}

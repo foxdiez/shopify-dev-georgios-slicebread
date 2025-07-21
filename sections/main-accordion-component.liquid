@@ -24,8 +24,8 @@
     {% case block.type %}
       {% when 'accordion' %}
         {% liquid
-          assign title = block.settings.title
-          assign rich_text = block.settings.rich_text
+          assign title = block.settings.title | default: false
+          assign rich_text = block.settings.rich_text | default: false
         %}
 
         {% render 'main-accordion-component' 

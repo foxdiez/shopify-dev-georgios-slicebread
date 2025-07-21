@@ -95,33 +95,43 @@
                 }
               {% endstyle %}
 
-              <div class="flex text-center">
-                <h2 class="title">
-                  {{ title }}
-                </h2>
-              </div>
+               {% if upsell_options == 'collection' %}
+                  {% if product.collections.size > 0 %}
+                    <div class="flex text-center">
+                      <h2 class="title">
+                        {{ title }}
+                      </h2>
+                    </div>
+                  {% endif %}
+                {% elsif upsell_others_also_bought.length <= 0%}
+                  <div class="flex text-center">
+                    <h2 class="title">
+                      {{ title }}
+                    </h2>
+                  </div>
+                {% endif %}
 
               <div class="flex flex-col flex-row-lg d-gap-15">
                 {% if upsell_options == 'collection' %}
                     {% if product.collections.size > 0 %}
-                        {% assign current_collection = product.collections.first %}
-                        {% assign related_products = current_collection.products %}
-                        {% assign shown = 0 %}
+                      {% assign current_collection = product.collections.first %}
+                      {% assign related_products = current_collection.products %}
+                      {% assign shown = 0 %}
 
-                        {% for related_product in related_products %}
-                            {% if related_product.id != product.id %}
-                                {% 
-                                  render 'main-upsell-card', 
-                                  product: related_product
-                                %}
+                      {% for related_product in related_products %}
+                          {% if related_product.id != product.id %}
+                              {% 
+                                render 'main-upsell-card', 
+                                product: related_product
+                              %}
 
-                                {% assign shown = shown | plus: 1 %}
-                            {% endif %}
+                              {% assign shown = shown | plus: 1 %}
+                          {% endif %}
 
-                            {% if shown == 2 %}
-                                {% break %}
-                            {% endif %}
-                        {% endfor %}
+                          {% if shown == 2 %}
+                              {% break %}
+                          {% endif %}
+                      {% endfor %}
                     {% endif %}
                 {% else %}
                   {% for upsell_product in upsell_others_also_bought %}
