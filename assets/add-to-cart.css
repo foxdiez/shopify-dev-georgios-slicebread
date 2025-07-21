@@ -1,0 +1,67 @@
+add-to-cart button {
+    position: relative;
+    overflow: hidden;
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 18px;
+    letter-spacing: -.02em;
+    line-height: 1.11;
+    cursor: pointer;
+}
+
+add-to-cart button.is-loading {
+  color: transparent;
+  background: transparent;
+  opacity: 1;
+}
+
+add-to-cart button.is-loading::after {
+  content: '';
+  max-width: 0.8em;
+  max-height: 0.8em;
+  margin: -0.4em 0 0 -0.4em;
+}
+
+add-to-cart button.is-loading > * {
+    display: none;
+}
+
+add-to-cart button.text-style {
+    background: linear-gradient(180deg, #2f2f2f, #2f2f2f);
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: inset 0 -10px 15px 1px #0e0e0e, inset 0 0 0 1px #676767;
+    font-size: 18px;
+    margin: 10px 0;
+    padding: 0;
+    transition: .15s;
+    width: 100%;
+    color: white;
+    display: block;
+    height: 48px;
+    line-height: 24px;
+    text-align: center;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+add-to-cart button.icon-style {
+    width: 100%;
+    min-width: 43px;
+    display: flex;
+    align-items: center;
+    background: #f3f3f3;
+    border: 1px solid #00000010;
+    border-radius: 6px;
+    color: #000;
+    font-size: 22px;
+    height: 27px;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 0;
+    transition: all .15s ease-in-out;
+}
+
+add-to-cart button.icon-style svg {
+    width: 13px;
+    pointer-events: none;
+}

@@ -1,0 +1,16 @@
+{{ 'main-accordion-component.css' | asset_url | stylesheet_tag }}
+
+<div id="{{ title }}" class="card-component main-accordion-component">
+    <div class="accordion-container">
+        <div class="accordion-item">
+            <input type="checkbox" name="accordion" id="{{ block.id }}">
+            <label class="accordion-label" for="{{ block.id }}">
+                <h3>{{ title }}</h3>
+                {% render 'icon-plus' %}
+            </label>
+            <article class="accordion-content">
+                {{ rich_text }}
+            </article>
+        </div>
+    </div>
+</div>

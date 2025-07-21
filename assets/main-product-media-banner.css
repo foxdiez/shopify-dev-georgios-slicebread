@@ -1,0 +1,72 @@
+.card-component.main-product-media-banner {
+    padding: 0;
+}
+
+.main-product-media-banner {
+    align-items: center;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+@media (min-width: 1000px) {
+    .main-product-media-banner.reverse-order .main-product-image-banner {
+        order: 2;
+    }
+
+    .main-product-media-banner.reverse-order .main-product-media-content {
+        order: 1;
+    }
+}
+
+.main-product-media-banner .main-product-image-banner img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1000px) {
+    .main-product-media-banner .main-product-image-banner img {
+        aspect-ratio: 1000 / 1250;
+    }
+
+    .main-product-media-banner.mixed-media .main-product-image-banner img {
+        aspect-ratio: 1 / 0.65;
+    }
+}
+
+.main-product-media-banner .main-product-media-content {
+    font-size: 20px;
+    padding: 20px 15px 35px 15px;
+}
+
+@media (min-width: 1000px) {
+    .main-product-media-banner .main-product-media-content {
+        justify-self: center;
+        max-width: 580px;
+        padding: 20px 15px 35px 15px;
+    }
+}
+
+.main-product-media-banner .main-product-media-content h1 {
+    font-size: 47px;
+    margin: 0;
+}    
+
+@media (min-width: 1000px) {
+    .main-product-media-banner .main-product-media-content h1 {
+        font-size: 77px;
+        letter-spacing: -.04em !important;
+    }    
+}
+
+.main-product-media-banner .main-product-media-content p {
+    font-family: Aleo, serif;
+    font-size: 16px;
+    line-height: 1.35;
+    margin: 0;
+    padding: 0;
+}
+
+.main-product-media-banner .main-product-media-content > * {
+    margin: 0;
+}

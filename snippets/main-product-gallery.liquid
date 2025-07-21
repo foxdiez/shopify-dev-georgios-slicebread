@@ -1,0 +1,57 @@
+{{ 'main-product-gallery.css' | asset_url | stylesheet_tag }}
+
+<main-product-gallery>
+    <div class="swiper swiper-main-product-gallery--pagination">
+        <div class="swiper-wrapper">
+            {% for image in product.images %}
+                {% liquid
+                    assign set_lazy_loading = 'eager'
+
+                    if forloop.index >= 6
+                        assign set_lazy_loading = 'lazy'
+                    endif
+                %}
+
+                <div 
+                    class="
+                        swiper-slide 
+                        {% if forloop.first %}
+                            is-selected
+                        {% endif %}
+                    "
+                >
+                    {{ image | image_url: width: 90 | image_tag: height: 90, alt: product.title, loading: set_lazy_loading }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="swiper swiper-main-product-gallery">
+        {% if product.collections.size > 0 %}
+            <a href="{{ product.collections.first.url }}" class="back-to-collection-link">
+                {% render 'icon-arrow-chevron' %}
+                {{ 'main_product_info.back' | t }}
+            </a>
+        {% endif %}
+
+        <div class="swiper-wrapper">
+            {% for image in product.images %}
+                {% liquid
+                    assign set_lazy_loading = 'eager'
+
+                    if forloop.index >= 2
+                        assign set_lazy_loading = 'lazy'
+                    endif
+                %}
+
+                <div class="swiper-slide front-image">
+                    <div class="swiper-zoom-container">
+                        {{ image | image_url: width: 1500 | image_tag: height: 1500, alt: product.title, loading: set_lazy_loading }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</main-product-gallery>
+
+<script src="{{ 'main-product-gallery.js' | asset_url }}" type="module" defer></script>

@@ -1,0 +1,25 @@
+{{ 'main-product-media-banner.css' | asset_url | stylesheet_tag }}
+
+<div class=
+    "
+        card-component main-product-media-banner
+        {% if image and rich_text %}
+           mixed-media d-grid d-two-col-lg
+        {% endif %}
+        {% if reverse_order == true %}
+            reverse-order
+        {% endif %}
+    "
+>
+    {% if image %}
+        <div class="main-product-image-banner flex">
+            {{ image | image_url: width: 3500 | image_tag: height: 3500, alt: image.alt, loading: set_lazy_loading }}
+        </div>
+    {% endif %}
+
+    {% if rich_text %}
+        <div class="main-product-media-content flex flex-col">
+            {{ rich_text }}
+        </div>
+    {% endif %}
+</div>

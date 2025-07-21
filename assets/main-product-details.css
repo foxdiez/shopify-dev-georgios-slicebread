@@ -1,0 +1,12 @@
+.card-component.details-accordion {
+    padding: 0 30px;
+}
+
+.card-component.details-accordion .accordion-label {
+    justify-content: start;
+}
+
+.card-component.details-accordion .accordion-label svg {
+    margin-right: 4px;
+    width: 12px;
+}

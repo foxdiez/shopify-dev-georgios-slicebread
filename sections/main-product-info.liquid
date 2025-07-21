@@ -1,0 +1,371 @@
+{% liquid
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign padding_sides = section.settings.padding_sides
+  assign padding_top_mobile = section.settings.padding_top_mobile
+  assign padding_bottom_mobile = section.settings.padding_bottom_mobile
+  assign padding_sides_mobile = section.settings.padding_sides_mobile
+%}
+
+{% style %}
+  #{{ section.id }}.section-padding-settings {
+    padding: {{ padding_top }}px {{ padding_sides }}px {{ padding_bottom }}px {{ padding_sides }}px;
+  }
+
+  @media (max-width: 767px) {
+    #{{ section.id }}.section-padding-settings {
+      padding: {{ padding_top_mobile }}px {{ padding_sides_mobile }}px {{ padding_bottom_mobile }}px {{ padding_sides_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+{{ 'main-product-info.css' | asset_url | stylesheet_tag }}
+
+<main-product-info id="{{ section.id }}" class="section-padding-settings">
+  <div class="main-product-info-wrapper d-grid">
+    <div data-main-product-gallery>
+      {% render 
+        'main-product-gallery', 
+        product: product
+      %}
+    </div>
+
+    <div class="flex flex-col" style="margin: 20px 0; gap: 10px;">
+      <div data-main-product-form>
+        {% render 
+          'main-product-form', 
+          product: product
+        %}
+      </div>
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'product_details' %}
+            <div data-main-product-details>
+              {% liquid
+                assign padding_top = block.settings.padding_top
+                assign padding_bottom = block.settings.padding_bottom
+                assign padding_top_mobile = block.settings.padding_top_mobile
+                assign padding_bottom_mobile = block.settings.padding_bottom_mobile
+              %}
+
+              {% style %}
+                #{{ section.id }} [data-main-product-details] {
+                  padding-top: {{ padding_top }}px;
+                  padding-bottom: {{ padding_bottom }}px;
+                }
+
+                @media (max-width: 767px) {
+                  #{{ section.id }} [data-main-product-details] {
+                    padding-top: {{ padding_top_mobile }}px;
+                    padding-bottom: {{ padding_bottom_mobile }}px;
+                  }
+                }
+              {% endstyle %}
+
+              {% 
+                render 'main-product-details', 
+                block: block,
+                product: product 
+              %}
+            </div>
+          {% when 'main_upsell' %}
+            <div data-main-upsell>
+              {% liquid
+                assign padding_top = block.settings.padding_top
+                assign padding_bottom = block.settings.padding_bottom
+                assign padding_top_mobile = block.settings.padding_top_mobile
+                assign padding_bottom_mobile = block.settings.padding_bottom_mobile
+                assign title = block.settings.title
+                assign upsell_others_also_bought = product.metafields.custom.upsell_others_also_bought.value.products.value
+                assign upsell_options = block.settings.upsell_options
+              %}
+
+              {% style %}
+                #{{ section.id }} [data-main-upsell] {
+                  padding-top: {{ padding_top }}px;
+                  padding-bottom: {{ padding_bottom }}px;
+                }
+
+                @media (max-width: 767px) {
+                  #{{ section.id }} [data-main-upsell] {
+                    padding-top: {{ padding_top_mobile }}px;
+                    padding-bottom: {{ padding_bottom_mobile }}px;
+                  }
+                }
+              {% endstyle %}
+
+              <div class="flex text-center">
+                <h2 class="title">
+                  {{ title }}
+                </h2>
+              </div>
+
+              <div class="flex flex-col flex-row-lg d-gap-15">
+                {% if upsell_options == 'collection' %}
+                    {% if product.collections.size > 0 %}
+                        {% assign current_collection = product.collections.first %}
+                        {% assign related_products = current_collection.products %}
+                        {% assign shown = 0 %}
+
+                        {% for related_product in related_products %}
+                            {% if related_product.id != product.id %}
+                                {% 
+                                  render 'main-upsell-card', 
+                                  product: related_product
+                                %}
+
+                                {% assign shown = shown | plus: 1 %}
+                            {% endif %}
+
+                            {% if shown == 2 %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                  {% for upsell_product in upsell_others_also_bought %}
+                    {% 
+                      render 'main-upsell-card', 
+                      product: upsell_product
+                    %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</main-product-info>
+
+<script src="{{ 'main-product-info.js' | asset_url }}" type="module" defer></script>
+
+{% schema %}
+  {
+    "name": "Main product info",
+    "tag": "section",
+    "enabled_on": {
+      "templates": ["product"]
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": "Spacing - Desktop"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top - Desktop",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom - Desktop",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_sides",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding sides - Desktop",
+        "default": 15
+      },
+      {
+        "type": "header",
+        "content": "Spacing - Mobile"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top - Mobile",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom - Mobile",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "padding_sides_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding sides - Mobile",
+        "default": 15
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product_details",
+        "name": "Product details",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "header",
+            "content": "Product details",
+            "info": "The details content can be edited in each product's description from the Shopify Admin."
+          },
+          {
+            "type": "header",
+            "content": "Spacing - Desktop"
+          },
+          {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top - Desktop",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom - Desktop",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Spacing - Mobile"
+          },
+          {
+            "type": "range",
+            "id": "padding_top_mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top - Mobile",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom_mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom - Mobile",
+            "default": 0
+          }
+        ]
+      },
+      {
+        "type": "main_upsell",
+        "name": "Upsell",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "header",
+            "content": "Spacing - Desktop"
+          },
+          {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top - Desktop",
+            "default": 20
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom - Desktop",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Spacing - Mobile"
+          },
+          {
+            "type": "range",
+            "id": "padding_top_mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding top - Mobile",
+            "default": 20
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom_mobile",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "label": "Padding bottom - Mobile",
+            "default": 0
+          },
+          {
+            "type": "header",
+            "content": "Upsell settings"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Others Like You Also Bought:"
+          },
+          {
+            "type": "select",
+            "id": "upsell_options",
+            "label": "Upsell options",
+            "info": "The Collection related option will show products from the same collection, whereas Custom selection can be controlled from the product metafield 'Upsell - Others also bought' in the Shopify admin.",
+            "options": [
+              {
+                "value": "collection",
+                "label": "Collection related"
+              },
+              {
+                "value": "custom",
+                "label": "Custom"
+              },
+            ],
+            "default": "collection"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Main product info"
+      }
+    ]
+  }
+{% endschema %}

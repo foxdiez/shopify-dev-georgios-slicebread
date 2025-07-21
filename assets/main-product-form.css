@@ -1,0 +1,202 @@
+:root {
+    #000000-light: color-mix(in srgb, var(--product-form-color-swatch), white 30%);
+}
+
+main-product-form .savings-tag {
+    position: absolute;
+    right: -12px;
+    top: -8px;
+    text-transform: uppercase;
+    border: 1.5px solid rgba(0, 0, 0, .1);
+    border-radius: 6px;
+    box-shadow: 2px 0 10px #0000001a;
+    display: inline;
+    padding: 3px 7px 2px;
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 11px;
+    line-height: 2rem;
+    text-transform: uppercase;
+}
+
+main-product-form .product-title-wrapper {
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+main-product-form .product-title-wrapper h1 {
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -.04em;
+    line-height: 1.11;
+    margin: 0;
+    padding: 0;
+}
+ 
+main-product-form .variant-name {
+    font-family: "Gotham-Book", sans-serif;
+    font-size: 13px;
+    font-weight: 325;
+    letter-spacing: -.03em;
+    line-height: 1.4;
+    margin-top: 5px;
+}
+
+@media (min-width: 480px) {
+    main-product-form .product-title-wrapper h1 {
+        font-size: 36px;
+    }
+
+    main-product-form .variant-name {
+        font-size: 15px;
+        margin-top: 0;
+        width: 75%;
+    }
+}
+
+main-product-form .price-wrapper {
+    gap: 10px;
+}
+
+main-product-form .price-wrapper .price {
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -.04em;
+    line-height: .95;
+    padding-top: 7px;
+}
+
+@media (min-width: 480px) {
+    main-product-form .price-wrapper .price {
+        font-size: 32px;
+    }
+}
+
+main-product-form .selectors-wrapper {
+    padding: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+main-product-form .selectors-wrapper .variant-type,
+main-product-form .selectors-wrapper .color-swatch-title {
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -.03em;
+    line-height: 1.48;
+}
+
+main-product-form .product-type-wrapper,
+main-product-form .color-swatch-wrapper {
+    gap: 10px;
+}
+
+main-product-form .product-type-wrapper {
+    align-items: center;
+}
+
+main-product-form .product-type-wrapper select {
+    background-color: #f3f3f3;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 11px 10px;
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    vertical-align: middle;
+    letter-spacing: -.36px;
+    text-align: left;
+    width: 100%;
+    max-width: 166px;
+    transition: border-color .1s ease-in-out;
+
+    background: white url('data:image/svg+xml;utf8,<svg fill="black" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.2rem center;
+    background-size: 26px;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+main-product-form .color-swatch-wrapper {
+    justify-content: center;
+}
+
+main-product-form .color-swatch-wrapper .color-swatch-selector {
+    position: relative;
+    background: var(#000000);
+    background: linear-gradient(0deg, var(#000000), #00000060 100%), var(#000000);
+    background-blend-mode: screen;
+    border-radius: 17px;
+    box-shadow: inset 0 0 0 1px #0000001a, inset 0 0 0 2px var(#000000);
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+main-product-form .color-swatch-wrapper .color-swatch-selector.thumbnail {
+    position: relative;
+    padding: 0;
+}
+ 
+
+main-product-form .color-swatch-wrapper .color-swatch-selector.thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    pointer-events: none;
+}
+
+main-product-form .color-swatch-wrapper .color-swatch-selector.is-selected::after {
+    content: '';
+    display: block;
+    width: 38px;
+    height: 38px;
+    border: 2.5px solid black;
+    border-radius: 100%;
+    position: absolute;
+    top: -6px;
+    left: -6px;
+}
+
+main-product-form .promo-tags-wrapper {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    margin: 20px 0 5px;
+}
+
+main-product-form .promo-tag {
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px inset rgb(from #1C440E r g b / 5%);
+    flex-direction: row;
+    font-family: "Gotham", sans-serif;
+    font-size: 14px;
+    justify-content: center;
+    letter-spacing: -.01em;
+    line-height: 1.11;
+    padding: 14px 18px 12px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+main-product-form .promo-tag.tax {
+    background-color: #DCEFDE;
+    color: #1C440E;
+}
+
+main-product-form .promo-tag.oversale {
+    background-color: #F7E4E3;
+    color: #E3163B
+}
