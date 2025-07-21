@@ -1,5 +1,127 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "main_product_info_ke6bEM": {
+      "type": "main-product-info",
+      "blocks": {
+        "product_details_hFbKpV": {
+          "type": "product_details",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_top_mobile": 0,
+            "padding_bottom_mobile": 0
+          }
+        },
+        "main_upsell_fiDdpg": {
+          "type": "main_upsell",
+          "settings": {
+            "padding_top": 20,
+            "padding_bottom": 0,
+            "padding_top_mobile": 20,
+            "padding_bottom_mobile": 0,
+            "title": "Others Like You Also Bought:",
+            "upsell_options": "collection"
+          }
+        }
+      },
+      "block_order": [
+        "product_details_hFbKpV",
+        "main_upsell_fiDdpg"
+      ],
+      "name": "Main product info",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_sides": 15,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_sides_mobile": 15
+      }
+    },
+    "main_product_media_banner_7U8reQ": {
+      "type": "main-product-media-banner",
+      "blocks": {
+        "mixed_media_banner_MTwmiz": {
+          "type": "mixed_media_banner",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_media_banner_2.value }}",
+            "rich_text": "",
+            "reverse_order": false
+          }
+        },
+        "mixed_media_banner_QaCqRq": {
+          "type": "mixed_media_banner",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_media_banner_1.value }}",
+            "rich_text": "{{ product.metafields.custom.product_media_richtext_1 | metafield_tag }}",
+            "reverse_order": false
+          }
+        },
+        "mixed_media_banner_KwxnJ8": {
+          "type": "mixed_media_banner",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_media_banner_3.value }}",
+            "rich_text": "",
+            "reverse_order": false
+          }
+        }
+      },
+      "block_order": [
+        "mixed_media_banner_MTwmiz",
+        "mixed_media_banner_QaCqRq",
+        "mixed_media_banner_KwxnJ8"
+      ],
+      "name": "Main product media banner",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_sides": 15,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_sides_mobile": 15
+      }
+    },
+    "main_accordion_component_BXtVaL": {
+      "type": "main-accordion-component",
+      "blocks": {
+        "accordion_LwVfjX": {
+          "type": "accordion",
+          "settings": {
+            "title": "{{ product.metafields.custom.main_accordion_component_title.value }}",
+            "rich_text": "{{ product.metafields.custom.main_accordion_component_richtext | metafield_tag }}"
+          }
+        },
+        "accordion_HGHtaK": {
+          "type": "accordion",
+          "settings": {
+            "title": "FAQ",
+            "rich_text": "<ul><li>Does this case provide drop protection?We consider this a skin rather than a case, therefore it does not offer drop protection.</li><li>How do I apply my Leather Skin?Leather skin is fit with a powerful 3M adhesive backing for a quick, durable bond to your phone. Watch our detailed instructional video here for an easy to follow step-by-step installation process.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_LwVfjX",
+        "accordion_HGHtaK"
+      ],
+      "name": "Main accordion component",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 20,
+        "padding_sides": 100,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 20,
+        "padding_sides_mobile": 40
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -10,13 +132,25 @@
             "text_style": "uppercase"
           }
         },
-        "title": { "type": "title", "settings": {} },
-        "price": { "type": "price", "settings": {} },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
-          "settings": { "picker_type": "button", "swatch_shape": "circle" }
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
         },
-        "quantity_selector": { "type": "quantity_selector", "settings": {} },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -24,8 +158,16 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": { "type": "description", "settings": {} },
-        "share": { "type": "share", "settings": { "share_label": "Share" } }
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
       },
       "block_order": [
         "vendor",
@@ -37,6 +179,7 @@
         "description",
         "share"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -55,6 +198,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -72,5 +216,11 @@
       }
     }
   },
-  "order": ["main", "related-products"]
+  "order": [
+    "main_product_info_ke6bEM",
+    "main_product_media_banner_7U8reQ",
+    "main_accordion_component_BXtVaL",
+    "main",
+    "related-products"
+  ]
 }
