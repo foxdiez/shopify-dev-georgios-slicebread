@@ -4,7 +4,7 @@ class MainProductGallery extends HTMLElement {
 
     this.swiperGalleryPagination = new Swiper('.swiper-main-product-gallery--pagination', {
       direction: 'horizontal',
-      slidesPerView: 2,
+      slidesPerView: 5,
       watchSlidesProgress: true,
       breakpoints: {
         1000: {

@@ -3735,13 +3735,6 @@ custom-accordion-component {
   gap: 16px;
 }
 
-custom-accordion-component .main-accordion-wrapper .main-accordion-component:last-child {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border: none;
-  border-bottom: 1px solid #ccc !important;
-}
-
 custom-accordion-component .accordion-container {
   display: flex;
   flex-direction: column;
@@ -3784,7 +3777,7 @@ custom-accordion-component .accordion-content {
   font-family: "Aleo", serif;
   font-size: 14px;
   letter-spacing: 0;
-  padding: 0 20px;
+  padding: 0;
   transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
 }
 
@@ -3799,14 +3792,16 @@ custom-accordion-component .accordion-content a {
 
 custom-accordion-component .accordion-item.active .accordion-content {
   max-height: 100svh;
+  max-width: 850px;
+  margin: 0 auto;
   opacity: 1;
-  padding: 30px 20px;
-  transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
+  padding: 30px 0;
+ transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
 }
 
 @media (max-width: 768px) {
   custom-accordion-component .accordion-item.active .accordion-content {
-    padding: 15px 15px 7px 15px;
+    padding: 15px 0 7px 0;
   }      
 }
 
