@@ -1,0 +1,13 @@
+{% assign original_price = product.compare_at_price %}
+{% assign sale_price = product.price %}
+
+{% if original_price > sale_price %}
+    {% assign savings = original_price | minus: sale_price %}
+    {% assign savings_percent = savings | times: 100 | divided_by: original_price %}
+
+    <div class="savings-tag" style="background: {{ background }}; color: {{ text-color }};">
+        <span>
+            {{ 'general.tags.save' | t }} {{ savings_percent | round }}%
+        </span>
+    </div>
+{% endif %}

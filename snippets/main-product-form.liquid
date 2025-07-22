@@ -1,0 +1,241 @@
+{% liquid
+    assign product_related_variants = product.metafields.custom.product_related_variants.value
+    assign product_variant_name = product.metafields.custom.product_variant_name.value.title
+    assign product_variant_group_name = product.metafields.custom.product_variant_group_name.value.title
+    assign product_variant_type = product.metafields.custom.product_variant_type
+    assign color_swatch = product.metafields.custom.color_swatch.value
+    assign product_tags = product.metafields.custom.product_tags.value
+
+    assign original_price = product.compare_at_price
+    assign sale_price = product.price
+    assign savings = original_price | minus: sale_price
+    assign savings_percent = savings | times: 100 | divided_by: original_price
+%}
+
+{% style %}
+  :root {
+    --product-form-color-swatch: {{ color_swatch.color }};
+  }
+{% endstyle %}
+
+{{ 'main-product-form.css' | asset_url | stylesheet_tag }}
+
+<main-product-form 
+    class="flex flex-col card-component"
+    data-product-variant-name="{{ product_variant_name }}"
+    data-product-color-swatch="{{ color_swatch.title }}"
+>
+    {% render 'price-saving-tag', 
+        product: product
+        background: '#E3163B',
+        text-color: 'white'
+    %}
+
+    <div class="product-title-wrapper flex">
+        <div class="flex flex-col">
+            <h1>            
+                {% if product_related_variants and product_variant_group_name %}
+                    {{ product_variant_group_name }}
+                {% elsif product_related_variants and product_variant_name %}
+                    {{ product_variant_name }}
+                {% else %}
+                    {{ product.title }}
+                {% endif %}
+            </h1>
+        </div>
+
+        <div class="price-wrapper flex">
+            {% unless product.compare_at_price < product.price %}
+                <span class="sale-price price flex">
+                    {{ product.compare_at_price | money_without_trailing_zeros }}
+                </span>
+            {% endunless %}
+
+            <strong>
+                <span class="price flex">
+                    {{ product.price | money_without_trailing_zeros }}
+                </span>
+            </strong>
+        </div>
+    </div>
+
+    {% if product_variant_name %}
+        <span class="variant-name">  
+            {{ product_variant_name }}
+        </span>
+    {% endif %}
+
+    <div class="selectors-wrapper">
+        {% if product_related_variants %}
+            {% if product_variant_type %}
+                <div class="product-type-wrapper flex">
+                    <span class="variant-type">
+                        {{ product_variant_type }}
+                    </span>
+
+                    {% liquid
+                        assign json_items = ''
+
+                        for product_related_variant in product_related_variants reversed
+                            for related_product in product_related_variant.products.value reversed
+                                assign name = related_product.metafields.custom.product_variant_name.value.title | strip | replace: '"', '\"'
+                                assign product_id = related_product.first_available_variant.id
+                                assign product_handle = related_product.handle
+                                assign color_swatch_title = related_product.metafields.custom.color_swatch.value.title
+                                assign json_item = '{"variant_name":"' | append: name | append: '","id":"' | append: product_id | append: '","handle":"' | append: product_handle | append: '","color_swatch":"' | append: color_swatch_title | append: '"}'
+                                assign json_items = json_items | append: json_item | append: ','
+                            endfor
+                        endfor
+
+                        assign json_items = json_items | strip | remove_last: ','
+                        assign json_array = '[' | append: json_items | append: ']'
+                    %}
+
+                    {% assign seen_names = "||" %}
+
+                    <label for="ProductRelatedVariantsSelector"></label>
+
+                    <select 
+                        id="ProductRelatedVariantsSelector"
+                        name="Product related variants selector" 
+                        data-product-related-variants-selector 
+                        data-product-related-variants-info='{{ json_array }}'
+                    >
+                        {% for product_related_variant in product_related_variants reversed %}
+                            {% for related_product in product_related_variant.products.value reversed %}
+                                {% assign name = related_product.metafields.custom.product_variant_name.value.title | strip %}
+                                {% assign search_key = '||' | append: name | append: '||' %}
+
+                                {% unless seen_names contains search_key %}
+                                    <option 
+                                        value="{{ name }}"
+                                        {% if name == product_variant_name %}
+                                            selected
+                                        {% endif %}
+                                    >
+                                        {{ name }}
+                                    </option>
+
+                                    {% assign seen_names = seen_names | append: name | append: '||' %}
+                                {% endunless %}
+                            {% endfor %}
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            {% if color_swatch %}
+                <div class="color-swatch-wrapper flex flex-col">
+                    <span class="color-swatch-title">
+                        Color: {{ color_swatch.title }}
+                    </span>
+
+                    <div class="flex d-gap-10">
+                        {% for related_product_variant in product_related_variants %}
+                            {% for related_product_variant_product in related_product_variant.products.value  %}
+                                {% assign name = related_product.metafields.custom.product_variant_name.value.title %}
+                                {% assign variant_color_swatch = related_product_variant_product.metafields.custom.color_swatch.value %}
+
+                                {% for name in related_product_variant_product.metafields.custom.product_variant_name.value.title %}
+                                    {% if name == product_variant_name %}  
+                                        {% if variant_color_swatch.thumbnail %}
+                                            <button 
+                                                class="
+                                                    color-swatch-selector thumbnail
+                                                    {% if color_swatch.title == variant_color_swatch.title %}
+                                                        is-selected
+                                                    {% endif %}
+
+                                                    {% unless related_product_variant_product.available == true %}
+                                                        out-of-stock
+                                                    {% endunless %}
+                                                " 
+                                                title="{{ variant_color_swatch.title }}" 
+                                                data-product-id="{{ related_product_variant_product.first_available_variant.id }}"
+                                                data-product-handle="{{ related_product_variant_product.handle }}"
+                                                {% unless related_product_variant_product.available == true %}
+                                                    disabled
+                                                {% endunless %}
+                                            >
+                                                {{ variant_color_swatch.thumbnail | image_url: width: 30 | image_tag: height: 30, alt: variant_color_swatch.title }}
+                                            </button>
+                                        {% else %}
+                                            <button 
+                                                class="
+                                                    color-swatch-selector
+                                                    {% if color_swatch.title == variant_color_swatch.title %}
+                                                        is-selected
+                                                    {% endif %}
+
+                                                    {% unless related_product_variant_product.available == true %}
+                                                        out-of-stock
+                                                    {% endunless %}
+                                                " 
+                                                style="background: linear-gradient(180deg, #303030ff 1%, {{ variant_color_swatch.color }} 100%);" 
+                                                title="{{ variant_color_swatch.title }}"
+                                                data-product-id="{{ related_product_variant_product.first_available_variant.id }}"
+                                                data-product-handle="{{ related_product_variant_product.handle }}"
+                                                {% unless related_product_variant_product.available == true %}
+                                                    disabled
+                                                {% endunless %}
+                                            >
+                                            </button>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="promo-tags-wrapper flex">
+        {% for product_tag in product_tags %}
+            {% for color_theme in product_tag.color_themes %}
+                <div 
+                    class="promo-tag flex 
+                        {% if color_theme == 'Green' %}
+                            {{ color_theme | downcase }}
+                        {% endif %}
+
+                        {% if color_theme == 'Red' %}
+                            {{ color_theme | downcase }}
+                        {% endif %}
+                    "
+                >
+                    <span>
+                        {% if color_theme == 'Red' %}
+                            <span>
+                                <strong>
+                                    {{ product_tag.text }}
+                                </strong> 
+                               {{ savings_percent | round }}%
+                            </span>
+                        {% else %}
+                            {{ product_tag.text }}
+                        {% endif %}
+                    </span>
+        
+                    {% if product_tag.info_text %}
+                        <div class="tooltip-container">
+                            <button class="icon">
+                                {% render 'info-icon' %}
+                            </button>
+                            <div class="tooltip-bubble card-component">
+                                <p>
+                                    {{ product_tag.info_text }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    {% render 'add-to-cart',
+        product: product
+    %}
+</main-product-form>

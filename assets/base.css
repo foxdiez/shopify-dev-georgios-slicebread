@@ -3595,3 +3595,292 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Custom fonts (Loaded from Shopify CDN) */
+
+:root {
+  --universalMaxWidth: 1600px;
+  --tag-background-green: #DCEFDE;
+  --tag-text-green: #1C440E;
+  --tag-background-red: #F7E4E3;
+  --tag-text-red: #E3163B;
+}
+
+@font-face {
+  font-family: "Gotham-Bold";
+  src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Gotham-Bold.woff2?v=1753008034') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham-Book";
+  src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Gotham-Book.woff2?v=1753008035') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham-Black";
+  src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Gotham-Black.woff2?v=1753008034') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aleo";
+  src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Aleo-Regular.woff2?v=1753183675') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Gotham-Bold", sans-serif;
+  color: black;
+}
+
+/* Global custom classes */
+
+.flex {
+  display: flex !important;
+}
+
+.flex {
+  display: flex !important;
+}
+
+@media (min-width: 767px) {
+  .flex {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 1023px) {
+  .flex {
+    display: flex !important;
+  }
+}
+
+.flex-col {
+  flex-direction: column !important;
+}
+
+@media (min-width: 767px) {
+  .flex-col-md {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 1023px) {
+  .flex-col-lg {
+    flex-direction: column !important;
+  }
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+@media (min-width: 767px) {
+  .flex-row-md {
+    flex-direction: row !important;
+  }
+}
+
+@media (min-width: 1023px) {
+  .flex-row-lg {
+    flex-direction: row !important;
+  }
+}
+
+.d-grid {
+  display: grid !important;
+}
+
+.d-gap-10 {
+  gap: 10px !important;
+}
+
+.d-gap-15 {
+  gap: 15px !important;
+}
+
+.d-two-col {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+@media (min-width: 767px) {
+  .d-two-col-md {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (min-width: 1023px) {
+  .d-two-col-lg {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+.uppercase {
+	text-transform: uppercase !important;
+}
+
+/* Specifics */
+
+custom-accordion-component {
+  gap: 16px;
+}
+
+custom-accordion-component .accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+custom-accordion-component .accordion-container .accordion-item {
+  overflow: hidden;
+}
+
+custom-accordion-component .accordion-label {
+  background: none;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+custom-accordion-component .accordion-label h3 {
+  font-family: "Gotham-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.11;
+  margin: 0;
+  padding: 0;
+}
+
+custom-accordion-component .accordion-content {
+  max-height: 0;
+	opacity: 0;
+  overflow: hidden;
+  font-family: "Aleo", serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  padding: 0;
+  transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
+}
+
+custom-accordion-component .accordion-content p {
+  margin: 0;
+}
+
+custom-accordion-component .accordion-content a {
+  color: black;
+  text-decoration: none;
+}
+
+custom-accordion-component .accordion-item.active .accordion-content {
+  max-height: 100svh;
+  max-width: 850px;
+  margin: 0 auto;
+  opacity: 1;
+  padding: 30px 0;
+ transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+  custom-accordion-component .accordion-item.active .accordion-content {
+    padding: 15px 0 7px 0;
+  }      
+}
+
+custom-accordion-component .accordion-label svg {
+  transition: transform 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+custom-accordion-component .accordion-item.active .accordion-label svg {
+  transform: rotate(180deg);
+}
+
+.card-component {
+  position: relative;
+  max-height: max-content;
+  padding: 20px 20px 10px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px #0000000f, 0 1px 1px -.5px #0000000f, 0 3px 3px -1.5px #0000000f, 0 6px 6px -3px #0000000f, 0 12px 12px -6px #0000000f, 0 24px 24px -12px #0000000f;
+}
+
+@media (min-width: 1000px) {
+  .card-component {
+    padding: 30px 35px 15px;
+ }
+}
+
+.price {
+  align-items: baseline;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  font-family: "Gotham-Bold", sans-serif;
+  justify-content: flex-start;
+  letter-spacing: -.02em;
+  line-height: .9;
+}
+
+.price.sale-price {
+  align-self: flex-end;
+  color: #b2b2b2;
+  -webkit-text-decoration: underline;
+  text-decoration: underline solid 4px;
+  text-decoration-color: #b2b2b2;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-style: solid;
+  -webkit-text-decoration-thickness: 2px;
+  -webkit-text-underline-offset: -.5rem;
+  text-underline-offset: -.4em;
+}
+
+.is-loading {
+  color: black;
+  opacity: 0.6;
+  cursor: wait;
+  pointer-events: none;
+  transition: all 300ms ease-in-out;
+}
+
+.is-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 90%;
+  max-width: 1.5em;
+  max-height: 1.5em;
+  margin: -0.4em 0 0 -0.4em;
+  border: 0.2em solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

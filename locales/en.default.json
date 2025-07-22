@@ -55,7 +55,20 @@
       "next_slide": "Slide right",
       "previous_slide": "Slide left",
       "name": "Slider"
+    },
+    "tags": {
+      "save": "Save",
+      "taxes": "Duties and Taxes Paid",
+      "reduction": "Overstock Sale:",
+      "off": "Off"
+    },
+    "atc": {
+      "text": "Add to cart"
     }
+  },
+  "main_product_info": {
+    "product_details": "Details",
+    "back": "Back"
   },
   "newsletter": {
     "label": "Email",

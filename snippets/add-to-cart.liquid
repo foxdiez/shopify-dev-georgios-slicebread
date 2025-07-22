@@ -1,0 +1,17 @@
+{{ 'add-to-cart.css' | asset_url | stylesheet_tag }}
+
+<add-to-cart data-product-id="{{ product.first_available_variant.id }}">
+        {% if button_style == 'icon' %}
+            <button class="icon-style" title="Add to cart">
+                {% render 'icon-plus' %}
+            </button>
+        {% else %}
+            <button class="text-style" title="Add to cart">
+                <span>
+                    {{ 'general.atc.text' | t }}
+                </span>
+            </button>
+        {% endif %}
+</add-to-cart>
+
+<script src="{{ 'add-to-cart.js' | asset_url }}" type="module" defer></script>

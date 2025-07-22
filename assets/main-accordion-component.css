@@ -1,0 +1,44 @@
+custom-accordion-component .card-component.main-accordion-component {
+    padding: 10px 35px;
+}
+
+@media (min-width: 1000px) {
+    custom-accordion-component .card-component.main-accordion-component {
+        margin: 0 50px;
+    }
+}
+
+custom-accordion-component .card-component.main-accordion-component .accordion-label {
+    padding: 15px 0;
+}
+
+custom-accordion-component .card-component.main-accordion-component .accordion-container .accordion-item input[type="checkbox"]:checked + .accordion-label svg {
+  transform: rotate(-45deg);
+}
+
+custom-accordion-component .card-component.main-accordion-component .accordion-container .accordion-container .accordion-content  {
+    font-size: 16px;
+}
+
+custom-accordion-component .card-component.main-accordion-component .accordion-container .accordion-content .metafield-rich_text_field { 
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1000px) {
+    custom-accordion-component .card-component.main-accordion-component .accordion-container .accordion-content .metafield-rich_text_field { 
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+        padding: 10px 0 40px;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    custom-accordion-component .card-component.main-accordion-component .accordion-container .accordion-content .metafield-rich_text_field ul { 
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
