@@ -4,11 +4,12 @@ class MainProductGallery extends HTMLElement {
 
     this.swiperGalleryPagination = new Swiper('.swiper-main-product-gallery--pagination', {
       direction: 'horizontal',
-      slidesPerView: 'auto',
+      slidesPerView: 2,
       watchSlidesProgress: true,
       breakpoints: {
         1000: {
           direction: 'vertical',
+          slidesPerView: 5,
         }
       }
     });
@@ -17,7 +18,6 @@ class MainProductGallery extends HTMLElement {
       direction: 'horizontal',
       slidesPerView: 1,
       speed: 600,
-      zoom: true,
       zoom: {
         maxRatio: 3,
         minRatio: 1,
@@ -32,7 +32,16 @@ class MainProductGallery extends HTMLElement {
       }
     });
 
-    this.paginationSlides = this.querySelectorAll('.swiper-main-product-gallery--pagination .swiper-slide');
+    this.swiperGallery.on('slideChange', () => {
+      const activeIndex = this.swiperGallery.activeIndex;
+      const paginationSwiper = this.swiperGalleryPagination;
+      const visibleSlides = paginationSwiper.params.slidesPerView;
+      const currentStart = paginationSwiper.activeIndex;
+
+      if (activeIndex <= currentStart + visibleSlides - 1) {
+        paginationSwiper.slideTo(activeIndex);
+      }
+    });
   }
 }
 

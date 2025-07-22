@@ -20,7 +20,9 @@
                         {% endif %}
                     "
                 >
-                    {{ image | image_url: width: 90 | image_tag: height: 90, alt: product.title, loading: set_lazy_loading }}
+                    <div class="img-wrapper">
+                        {{ image | image_url: width: 90 | image_tag: height: 90, alt: product.title, loading: set_lazy_loading }}
+                    </div>
                 </div>
             {% endfor %}
         </div>

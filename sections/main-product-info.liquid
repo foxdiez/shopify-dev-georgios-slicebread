@@ -63,8 +63,11 @@
                 }
               {% endstyle %}
 
+              {{ 'main-product-details.css' | asset_url | stylesheet_tag }}
+
               {% 
-                render 'main-product-details', 
+                render 'main-accordion-component', 
+                type: 'product',
                 block: block,
                 product: product 
               %}

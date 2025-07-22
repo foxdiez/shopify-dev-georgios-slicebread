@@ -22,8 +22,20 @@
     }
 }
 
+.main-product-media-banner .main-product-image-banner {
+    height: 100%;
+}
+
+@media (min-width: 1000px) {
+    .main-product-media-banner .main-product-image-banner {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    } 
+}
+
 .main-product-media-banner .main-product-image-banner img {
     object-fit: cover;
+    object-position: top;
     width: 100%;
     height: 100%;
 }
@@ -31,6 +43,7 @@
 @media (max-width: 1000px) {
     .main-product-media-banner .main-product-image-banner img {
         aspect-ratio: 1000 / 1250;
+        object-position: center;
     }
 
     .main-product-media-banner.mixed-media .main-product-image-banner img {
@@ -38,9 +51,16 @@
     }
 }
 
+.main-product-media-banner .main-product-media-content-wrapper {
+    width: 100%;
+    height: auto;
+    background: white;
+}
+
 .main-product-media-banner .main-product-media-content {
     font-size: 20px;
     padding: 20px 15px 35px 15px;
+    margin: 0 auto;
 }
 
 @media (min-width: 1000px) {
@@ -64,7 +84,7 @@
 }
 
 .main-product-media-banner .main-product-media-content p {
-    font-family: Aleo, serif;
+    font-family: "Aleo", serif;
     font-size: 16px;
     line-height: 1.35;
     margin: 0;

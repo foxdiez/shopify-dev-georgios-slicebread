@@ -4,6 +4,12 @@
     assign product_variant_group_name = product.metafields.custom.product_variant_group_name.value.title
     assign product_variant_type = product.metafields.custom.product_variant_type
     assign color_swatch = product.metafields.custom.color_swatch.value
+    assign product_tags = product.metafields.custom.product_tags.value
+
+    assign original_price = product.compare_at_price
+    assign sale_price = product.price
+    assign savings = original_price | minus: sale_price
+    assign savings_percent = savings | times: 100 | divided_by: original_price
 %}
 
 {% style %}
@@ -165,7 +171,7 @@
                                                         out-of-stock
                                                     {% endunless %}
                                                 " 
-                                                style="background: {{ variant_color_swatch.color }};" 
+                                                style="background: linear-gradient(180deg, #303030ff 1%, {{ variant_color_swatch.color }} 100%);" 
                                                 title="{{ variant_color_swatch.title }}"
                                                 data-product-id="{{ related_product_variant_product.first_available_variant.id }}"
                                                 data-product-handle="{{ related_product_variant_product.handle }}"
@@ -186,20 +192,47 @@
     </div>
 
     <div class="promo-tags-wrapper flex">
-        <div class="promo-tag tax">
-            <span>
-                {{ 'general.tags.taxes' | t }}
-            </span>
-        </div>
+        {% for product_tag in product_tags %}
+            {% for color_theme in product_tag.color_themes %}
+                <div 
+                    class="promo-tag flex 
+                        {% if color_theme == 'Green' %}
+                            {{ color_theme | downcase }}
+                        {% endif %}
 
-        <div class="promo-tag oversale">
-            <span>
-                <strong>
-                    {{ 'general.tags.reduction' | t }}
-                </strong> 
-                27% {{ 'general.tags.off' | t }}
-            </span>
-        </div>
+                        {% if color_theme == 'Red' %}
+                            {{ color_theme | downcase }}
+                        {% endif %}
+                    "
+                >
+                    <span>
+                        {% if color_theme == 'Red' %}
+                            <span>
+                                <strong>
+                                    {{ product_tag.text }}
+                                </strong> 
+                               {{ savings_percent | round }}%
+                            </span>
+                        {% else %}
+                            {{ product_tag.text }}
+                        {% endif %}
+                    </span>
+        
+                    {% if product_tag.info_text %}
+                        <div class="tooltip-container">
+                            <button class="icon">
+                                {% render 'info-icon' %}
+                            </button>
+                            <div class="tooltip-bubble card-component">
+                                <p>
+                                    {{ product_tag.info_text }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endfor %}
     </div>
 
     {% render 'add-to-cart',

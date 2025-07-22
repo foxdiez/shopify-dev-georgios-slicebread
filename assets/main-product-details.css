@@ -1,12 +1,36 @@
-.card-component.details-accordion {
-    padding: 0 30px;
+custom-accordion-component .card-component.product-details-accordion {
+    padding: 20px 30px;
 }
 
-.card-component.details-accordion .accordion-label {
+custom-accordion-component .card-component.product-details-accordion .accordion-label {
     justify-content: start;
 }
 
-.card-component.details-accordion .accordion-label svg {
+custom-accordion-component .card-component.product-details-accordion h3 {
+    font-family: "Gotham-Bold", sans-serif;
+    font-size: 18px;
+    line-height: .92;
+    font-weight: 400;
+    letter-spacing: -.02em;
+    margin: 0;
+    padding: 0;
+}
+
+custom-accordion-component .card-component.product-details-accordion .accordion-label svg {
     margin-right: 4px;
     width: 12px;
+}
+
+custom-accordion-component .card-component.product-details-accordion .accordion-content {
+    padding: 0;
+}
+
+custom-accordion-component .card-component.product-details-accordion .accordion-item.active .accordion-content {
+    padding: 30px 0;
+}
+
+@media (max-width: 768px) {
+  custom-accordion-component .card-component.product-details-accordion .accordion-item.active .accordion-content {
+    padding: 30px 0;
+  }      
 }

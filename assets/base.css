@@ -3598,6 +3598,14 @@ details-disclosure > details {
 
 /* Custom fonts (Loaded from Shopify CDN) */
 
+:root {
+  --universalMaxWidth: 1600px;
+  --tag-background-green: #DCEFDE;
+  --tag-text-green: #1C440E;
+  --tag-background-red: #F7E4E3;
+  --tag-text-red: #E3163B;
+}
+
 @font-face {
   font-family: "Gotham-Bold";
   src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Gotham-Bold.woff2?v=1753008034') format('woff2');
@@ -3622,6 +3630,14 @@ details-disclosure > details {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Aleo";
+  src: url('https://cdn.shopify.com/s/files/1/0606/4763/7157/files/Aleo-Regular.woff2?v=1753183675') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: "Gotham-Bold", sans-serif;
   color: black;
@@ -3630,83 +3646,177 @@ body {
 /* Global custom classes */
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 @media (min-width: 767px) {
   .flex {
-    display: flex;
+    display: flex !important;
   }
 }
 
 @media (min-width: 1023px) {
   .flex {
-    display: flex;
+    display: flex !important;
   }
 }
 
 .flex-col {
-  flex-direction: column;
+  flex-direction: column !important;
 }
 
 @media (min-width: 767px) {
   .flex-col-md {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 }
 
 @media (min-width: 1023px) {
   .flex-col-lg {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 }
 
 .flex-row {
-  flex-direction: row;
+  flex-direction: row !important;
 }
 
 @media (min-width: 767px) {
   .flex-row-md {
-    flex-direction: row;
+    flex-direction: row !important;
   }
 }
 
 @media (min-width: 1023px) {
   .flex-row-lg {
-    flex-direction: row;
+    flex-direction: row !important;
   }
 }
 
 .d-grid {
-  display: grid;
+  display: grid !important;
 }
 
 .d-gap-10 {
-  gap: 10px;
+  gap: 10px !important;
 }
 
 .d-gap-15 {
-  gap: 15px;
+  gap: 15px !important;
 }
 
 .d-two-col {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr !important;
 }
 
 @media (min-width: 767px) {
   .d-two-col-md {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 
 @media (min-width: 1023px) {
   .d-two-col-lg {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr !important;
   }
+}
+
+.uppercase {
+	text-transform: uppercase !important;
+}
+
+/* Specifics */
+
+custom-accordion-component {
+  gap: 16px;
+}
+
+custom-accordion-component .main-accordion-wrapper .main-accordion-component:last-child {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #ccc !important;
+}
+
+custom-accordion-component .accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+custom-accordion-component .accordion-container .accordion-item {
+  overflow: hidden;
+}
+
+custom-accordion-component .accordion-label {
+  background: none;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  width: 100%;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+custom-accordion-component .accordion-label h3 {
+  font-family: "Gotham-Bold", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.11;
+  margin: 0;
+  padding: 0;
+}
+
+custom-accordion-component .accordion-content {
+  max-height: 0;
+	opacity: 0;
+  overflow: hidden;
+  font-family: "Aleo", serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  padding: 0 20px;
+  transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
+}
+
+custom-accordion-component .accordion-content p {
+  margin: 0;
+}
+
+custom-accordion-component .accordion-content a {
+  color: black;
+  text-decoration: none;
+}
+
+custom-accordion-component .accordion-item.active .accordion-content {
+  max-height: 100svh;
+  opacity: 1;
+  padding: 30px 20px;
+  transition: max-height 200ms ease-in-out, opacity 200ms ease-in-out, padding 200ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+  custom-accordion-component .accordion-item.active .accordion-content {
+    padding: 15px 15px 7px 15px;
+  }      
+}
+
+custom-accordion-component .accordion-label svg {
+  transition: transform 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+custom-accordion-component .accordion-item.active .accordion-label svg {
+  transform: rotate(180deg);
 }
 
 .card-component {
@@ -3722,80 +3832,6 @@ body {
   .card-component {
     padding: 30px 35px 15px;
  }
-}
-
-.accordion-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.accordion-container .accordion-item {
-  overflow: hidden;
-}
-
-.accordion-container .accordion-item input[type="checkbox"] {
-  display: none;
-}
-
-.accordion-container .accordion-label {
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  border: none;
-  width: 100%;
-  gap: 1rem;
-}
-
-.accordion-container .accordion-label h3 {
-  font-family: "Gotham-Bold", sans-serif;
-  font-size: 18px;
-  line-height: .92;
-  font-weight: 400;
-  letter-spacing: -.02em;
-  margin: 0;
-  padding: 0;
-}
-
-.accordion-container .accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  font-family: "Aleo", serif;
-  font-size: 14px;
-  letter-spacing: 0;
-  transition: max-height 400ms ease-in-out, opacity 400ms ease-in-out;
-}
-
-.accordion-container .accordion-content p {
-  margin: 0;
-}
-
-.accordion-container .accordion-content a {
-  color: black;
-  text-decoration: none;
-}
-
-.accordion-container .accordion-item input[type="checkbox"]:checked ~ .accordion-content {
-  max-height: 100svh;
-  padding: 10px 0 25px 0;
-  opacity: 1;
-}
-
-.accordion-container .accordion-label {
-  padding: 20px 0;
-}
-
-.accordion-container .accordion-label svg {
-  transition: transform 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-.accordion-container .accordion-item input[type="checkbox"]:checked + .accordion-label svg {
-  transform: rotate(180deg);
 }
 
 .price {

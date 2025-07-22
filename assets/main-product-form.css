@@ -1,17 +1,23 @@
 main-product-form .savings-tag {
     position: absolute;
-    right: -12px;
+    right: -6px;
     top: -8px;
     text-transform: uppercase;
     border: 1.5px solid rgba(0, 0, 0, .1);
     border-radius: 6px;
     box-shadow: 2px 0 10px #0000001a;
     display: inline;
-    padding: 3px 7px 2px;
+    padding: 2px 7px 1px;
     font-family: "Gotham-Bold", sans-serif;
     font-size: 11px;
     line-height: 2rem;
     text-transform: uppercase;
+}
+
+@media (min-width: 1000px) {
+    main-product-form .savings-tag {
+        right: -12px;
+    }
 }
 
 main-product-form .product-title-wrapper {
@@ -124,11 +130,8 @@ main-product-form .color-swatch-wrapper {
 
 main-product-form .color-swatch-wrapper .color-swatch-selector {
     position: relative;
-    background: var(#000000);
-    background: linear-gradient(0deg, var(#000000), #00000060 100%), var(#000000);
     background-blend-mode: screen;
     border-radius: 17px;
-    box-shadow: inset 0 0 0 1px #0000001a, inset 0 0 0 2px var(#000000);
     display: inline-block;
     vertical-align: middle;
     height: 30px;
@@ -140,7 +143,6 @@ main-product-form .color-swatch-wrapper .color-swatch-selector.thumbnail {
     position: relative;
     padding: 0;
 }
- 
 
 main-product-form .color-swatch-wrapper .color-swatch-selector.thumbnail img {
     position: absolute;
@@ -155,14 +157,17 @@ main-product-form .color-swatch-wrapper .color-swatch-selector.thumbnail img {
 
 main-product-form .color-swatch-wrapper .color-swatch-selector.is-selected::after {
     content: '';
-    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 38px;
     height: 38px;
     border: 2.5px solid black;
-    border-radius: 100%;
-    position: absolute;
-    top: -6px;
-    left: -6px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-sizing: border-box;
 }
 
 main-product-form .promo-tags-wrapper {
@@ -178,6 +183,8 @@ main-product-form .promo-tag {
     flex-direction: row;
     font-family: "Gotham", sans-serif;
     font-size: 14px;
+    gap: 5px;
+    align-items: center;
     justify-content: center;
     letter-spacing: -.01em;
     line-height: 1.11;
@@ -187,14 +194,75 @@ main-product-form .promo-tag {
     text-decoration: none;
 }
 
-main-product-form .promo-tag.tax {
-    background-color: #DCEFDE;
-    color: #1C440E;
+main-product-form .promo-tag.green {
+    background-color: var(--tag-background-green);
+    color: var(--tag-text-green);
+    fill: var(--tag-text-green);
 }
 
-main-product-form .promo-tag.oversale {
-    background-color: #F7E4E3;
-    color: #E3163B
+main-product-form .promo-tag.red {
+    background-color: var(--tag-background-red);
+    color: var(--tag-text-red);
+    fill: var(--tag-text-red);
+}
+
+main-product-form .tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
+}
+
+main-product-form .icon {
+    padding: 0;
+    outline: 0;
+    background: none;
+    border: 0;
+    height: auto;
+}
+
+main-product-form .icon svg {
+    width: 14px;
+    height: auto;
+    pointer-events: none;
+}
+
+main-product-form .tooltip-bubble {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    transform: translateX(-50%);
+    min-width: 300px;
+    max-width: 350px;
+    width: 100%;
+    font-family: "Aleo", serif;
+    font-size: 14px;
+    text-align: left;
+    background-color: white;
+    color: black;
+    padding: 15px 20px;
+    border-radius: 8px;
+    white-space: normal;
+    word-wrap: break-word;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 100;
+}
+
+@media (min-width: 1000px) {
+  main-product-form .tooltip-bubble {
+        left: 30px;
+    }  
+}
+
+main-product-form .icon:hover + .tooltip-bubble {
+    opacity: 1;
+}
+
+main-product-form .tooltip-bubble p {
+    margin: 0;
 }
 
 main-product-form .color-swatch-wrapper .color-swatch-selector.out-of-stock::after {

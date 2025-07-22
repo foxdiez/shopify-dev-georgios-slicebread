@@ -20,21 +20,23 @@
 {% endstyle %}
 
 <div id="{{ section.id }}" class="section-padding-settings flex flex-col d-gap-15">
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'accordion' %}
-        {% liquid
-          assign title = block.settings.title | default: false
-          assign rich_text = block.settings.rich_text | default: false
-        %}
+  <custom-accordion-component class="main-accordion-wrapper flex flex-col">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'accordion' %}
+          {% liquid
+            assign title = block.settings.title | default: false
+            assign rich_text = block.settings.rich_text | default: false
+          %}
 
-        {% render 'main-accordion-component' 
-          block: block,
-          title: title,
-          rich_text: rich_text
-        %}
-    {% endcase %}
-  {% endfor %}
+          {% render 'main-accordion-component' 
+            block: block,
+            title: title,
+            rich_text: rich_text
+          %}
+      {% endcase %}
+    {% endfor %}
+  </custom-accordion-component>
 </div>
 
 {% schema %}

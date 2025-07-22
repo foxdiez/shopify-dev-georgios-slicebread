@@ -1,13 +1,15 @@
 main-product-info .main-product-info-wrapper {
+    max-width: 1520px;
     grid-template-columns: 1fr;
-    margin: auto 15px;
+    padding: 0 15px;
+    margin: 0 auto;
 }
 
 @media (min-width: 1000px) {
     main-product-info .main-product-info-wrapper {
         grid-template-columns: 1fr 42%;
         column-gap: 20px;
-        margin: auto 20px;
+        padding: auto 20px;
     }
 }
 

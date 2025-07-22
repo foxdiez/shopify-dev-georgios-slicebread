@@ -5,7 +5,7 @@
         "
             card-component main-product-media-banner
             {% if image and rich_text %}
-            mixed-media d-grid d-two-col-lg
+                mixed-media d-grid d-two-col-lg
             {% endif %}
             {% if reverse_order == true %}
                 reverse-order
@@ -13,14 +13,25 @@
         "
     >
         {% if image %}
-            <div class="main-product-image-banner flex">
+            <div 
+                class="
+                    main-product-image-banner flex
+                    {% if image and rich_text %}
+                        mixed-media
+                    {% else %}
+                        single-media
+                    {% endif %}
+                "
+            >
                 {{ image | image_url: width: 3500 | image_tag: height: 3500, alt: 'Product image banner', loading: set_lazy_loading }}
             </div>
         {% endif %}
 
         {% if rich_text %}
-            <div class="main-product-media-content flex flex-col">
-                {{ rich_text }}
+            <div class="main-product-media-content-wrapper flex flex-col">
+                <div class="main-product-media-content">
+                    {{ rich_text }}
+                </div>
             </div>
         {% endif %}
     </div>
